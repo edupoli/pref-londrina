@@ -1,0 +1,70 @@
+{
+  "name": "pref-londrina",
+  "version": "0.0.1",
+  "description": "Automacao de acesso a geracao de NF-e",
+  "main": "dist/app.js",
+  "author": "Eduardo Policarpo",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "tsc -p .",
+    "dev": "ts-node-dev --inspect --ignore-watch node_modules src/app.ts",
+    "clean": "shx rm -rf dist",
+    "lint": "npx eslint --ext .ts src",
+    "start": "node ./dist/app.js",
+    "watch": "tsc -w",
+    "test": "npx autocannon --renderStatusCode -d 10 -c 1000  localhost:3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/edupoli/pref-londrina.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edupoli/pref-londrina/issues"
+  },
+  "homepage": "https://github.com/edupoli/pref-londrina#readme",
+  "keywords": [
+    "puppeteer",
+    "javascript",
+    "londrina"
+  ],
+  "dependencies": {
+    "@sentry/integrations": "latest",
+    "@sentry/node": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "dotenv-expand": "latest",
+    "envalid": "latest",
+    "express": "latest",
+    "helmet": "latest",
+    "morgan": "latest",
+    "puppeteer": "^19.5.2",
+    "tesseract.js": "^4.0.2",
+    "winston": "latest",
+    "winston-daily-rotate-file": "latest"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@commitlint/prompt-cli": "latest",
+    "@types/axios": "latest",
+    "@types/cors": "latest",
+    "@types/express": "latest",
+    "@types/express-ejs-layouts": "latest",
+    "@types/morgan": "latest",
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "autocannon": "latest",
+    "eslint": "latest",
+    "eslint-config-airbnb": "latest",
+    "eslint-config-airbnb-typescript": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-prettier": "latest",
+    "nodemon": "latest",
+    "prettier": "latest",
+    "prettier-quick": "latest",
+    "shx": "latest",
+    "ts-node-dev": "latest",
+    "typescript": "latest"
+  }
+}
