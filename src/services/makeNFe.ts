@@ -17,7 +17,8 @@ async function recognizeCaptcha(): Promise<string> {
 
 export async function create(cmc: string, uf: string, senha: any) {
   const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
+  const pages = await browser.pages();
+  const page = pages[0];
   await page.goto('https://iss.londrina.pr.gov.br/contador/login.php');
   await page.waitForSelector("td[align='center'] img");
   const element = await page.evaluate((selector) => {
@@ -36,6 +37,13 @@ export async function create(cmc: string, uf: string, senha: any) {
   });
 
   const text = await recognizeCaptcha();
+  if (text.trim() === '') {
+    await page.close();
+    return {
+      statusCode: 400,
+      result: 'Nao foi Possivel ler a imagen do Captcha',
+    };
+  }
 
   const inputCMC = await page.$("input[name='crc']");
   await inputCMC?.type(cmc, { delay: 100 });
@@ -55,4 +63,8 @@ export async function create(cmc: string, uf: string, senha: any) {
   const button = await page.$("button[name='btnOk']");
   await button?.click();
   await page.waitForNavigation();
+  return {
+    statusCode: 200,
+    result: 'Loading Success',
+  };
 }
